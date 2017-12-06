@@ -92,6 +92,7 @@ export class TabbedForm extends Component {
                     )}
                     {toolbar &&
                         React.cloneElement(toolbar, {
+                            className: 'toolbar',
                             handleSubmitWithRedirect: this
                                 .handleSubmitWithRedirect,
                             invalid,

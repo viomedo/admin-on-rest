@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash.get';
 import pure from 'recompose/pure';
 import { withStyles } from 'material-ui/styles';
+import classnames from 'classnames';
 
 const hasNumberFormat = !!(
     typeof Intl === 'object' &&
@@ -56,12 +57,15 @@ export const NumberField = ({
     if (value == null) return null;
     if (!hasNumberFormat)
         return (
-            <span className={classes(classes.input, className)} style={elStyle}>
+            <span
+                className={classnames(classes.input, className)}
+                style={elStyle}
+            >
                 {value}
             </span>
         );
     return (
-        <span className={classes(classes.input, className)} style={elStyle}>
+        <span className={classnames(classes.input, className)} style={elStyle}>
             {value.toLocaleString(locales, options)}
         </span>
     );
