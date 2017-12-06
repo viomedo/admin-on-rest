@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 import { MenuItem } from 'material-ui/Menu';
 import ExitIcon from 'material-ui-icons/PowerSettingsNew';
+import classnames from 'classnames';
 
 import translate from '../../i18n/translate';
 import { userLogout as userLogoutAction } from '../../actions/authActions';
@@ -15,14 +16,15 @@ const iconPaddingStyle = { paddingRight: '0.5em' };
  *
  * Used for the Logout Menu item in the sidebar
  */
-const Logout = ({ translate, userLogout }) => (
-    <MenuItem className="logout" onClick={userLogout}>
+const Logout = ({ className, translate, userLogout }) => (
+    <MenuItem className={classnames('logout', className)} onClick={userLogout}>
         <ExitIcon style={iconPaddingStyle} />
         {translate('ra.auth.logout')}
     </MenuItem>
 );
 
 Logout.propTypes = {
+    className: PropTypes.string,
     translate: PropTypes.func,
     userLogout: PropTypes.func,
 };

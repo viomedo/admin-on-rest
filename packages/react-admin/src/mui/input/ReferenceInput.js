@@ -157,6 +157,7 @@ export class ReferenceInput extends Component {
     render() {
         const {
             classes,
+            className,
             input,
             resource,
             label,
@@ -173,12 +174,15 @@ export class ReferenceInput extends Component {
             return (
                 <Labeled
                     label={
-                        typeof label === 'undefined'
-                            ? `resources.${resource}.fields.${source}`
-                            : label
+                        typeof label === 'undefined' ? (
+                            `resources.${resource}.fields.${source}`
+                        ) : (
+                            label
+                        )
                     }
                     source={source}
                     resource={resource}
+                    className={className}
                 >
                     <LinearProgress />
                 </Labeled>
@@ -188,6 +192,7 @@ export class ReferenceInput extends Component {
         return React.cloneElement(children, {
             allowEmpty,
             classes,
+            className,
             input,
             label:
                 typeof label === 'undefined'
@@ -211,6 +216,8 @@ ReferenceInput.propTypes = {
     allowEmpty: PropTypes.bool.isRequired,
     basePath: PropTypes.string,
     children: PropTypes.element.isRequired,
+    className: PropTypes.string,
+    classes: PropTypes.object,
     crudGetMatching: PropTypes.func.isRequired,
     crudGetOne: PropTypes.func.isRequired,
     filter: PropTypes.object,

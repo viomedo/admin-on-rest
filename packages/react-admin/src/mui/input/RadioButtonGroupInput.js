@@ -86,9 +86,11 @@ export class RadioButtonGroupInput extends Component {
             <Radio
                 key={get(choice, optionValue)}
                 label={
-                    translateChoice
-                        ? translate(choiceName, { _: choiceName })
-                        : choiceName
+                    translateChoice ? (
+                        translate(choiceName, { _: choiceName })
+                    ) : (
+                        choiceName
+                    )
                 }
                 value={get(choice, optionValue)}
             />
@@ -97,6 +99,7 @@ export class RadioButtonGroupInput extends Component {
 
     render() {
         const {
+            className,
             label,
             resource,
             source,
@@ -109,6 +112,7 @@ export class RadioButtonGroupInput extends Component {
 
         return (
             <Labeled
+                className={className}
                 label={label}
                 onChange={this.handleChange}
                 resource={resource}
@@ -131,6 +135,7 @@ export class RadioButtonGroupInput extends Component {
 
 RadioButtonGroupInput.propTypes = {
     choices: PropTypes.arrayOf(PropTypes.object),
+    className: PropTypes.string,
     elStyle: PropTypes.object,
     input: PropTypes.object,
     isRequired: PropTypes.bool,

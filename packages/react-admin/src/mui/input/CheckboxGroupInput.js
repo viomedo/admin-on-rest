@@ -114,18 +114,22 @@ export class CheckboxGroupInput extends Component {
             <FormControlLabel
                 key={get(choice, optionValue)}
                 checked={
-                    value
-                        ? value.find(v => v == get(choice, optionValue)) !==
-                          undefined
-                        : false
+                    value ? (
+                        value.find(v => v == get(choice, optionValue)) !==
+                        undefined
+                    ) : (
+                        false
+                    )
                 }
                 onChange={this.handleCheck}
                 value={String(get(choice, optionValue))}
                 control={<Checkbox {...options} />}
                 label={
-                    translateChoice
-                        ? translate(choiceName, { _: choiceName })
-                        : choiceName
+                    translateChoice ? (
+                        translate(choiceName, { _: choiceName })
+                    ) : (
+                        choiceName
+                    )
                 }
             />
         );
@@ -134,6 +138,7 @@ export class CheckboxGroupInput extends Component {
     render() {
         const {
             choices,
+            className,
             classes = {},
             isRequired,
             label,
@@ -142,7 +147,11 @@ export class CheckboxGroupInput extends Component {
         } = this.props;
 
         return (
-            <FormControl component="fieldset" margin="normal">
+            <FormControl
+                className={className}
+                component="fieldset"
+                margin="normal"
+            >
                 <FormLabel component="legend" className={classes.label}>
                     <FieldTitle
                         label={label}
@@ -160,6 +169,7 @@ export class CheckboxGroupInput extends Component {
 CheckboxGroupInput.propTypes = {
     choices: PropTypes.arrayOf(PropTypes.object),
     classes: PropTypes.object,
+    className: PropTypes.string,
     label: PropTypes.string,
     source: PropTypes.string,
     options: PropTypes.object,

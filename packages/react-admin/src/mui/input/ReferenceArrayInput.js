@@ -156,6 +156,7 @@ export class ReferenceArrayInput extends Component {
 
     render() {
         const {
+            className,
             input,
             resource,
             label,
@@ -179,17 +180,21 @@ export class ReferenceArrayInput extends Component {
             return (
                 <Labeled
                     label={
-                        typeof label === 'undefined'
-                            ? `resources.${resource}.fields.${source}`
-                            : label
+                        typeof label === 'undefined' ? (
+                            `resources.${resource}.fields.${source}`
+                        ) : (
+                            label
+                        )
                     }
                     source={source}
                     resource={resource}
+                    className={className}
                 />
             );
         }
 
         return React.cloneElement(children, {
+            className,
             allowEmpty,
             input,
             label:
@@ -214,6 +219,7 @@ ReferenceArrayInput.propTypes = {
     allowEmpty: PropTypes.bool.isRequired,
     basePath: PropTypes.string,
     children: PropTypes.element.isRequired,
+    className: PropTypes.string,
     crudGetMatching: PropTypes.func.isRequired,
     crudGetMany: PropTypes.func.isRequired,
     filter: PropTypes.object,

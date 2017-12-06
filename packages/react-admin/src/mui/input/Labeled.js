@@ -41,6 +41,7 @@ const styles = theme => ({
 export const Labeled = ({
     children,
     classes,
+    className,
     input,
     isRequired,
     label,
@@ -59,7 +60,7 @@ export const Labeled = ({
     }
 
     return (
-        <FormControl margin="normal">
+        <FormControl className={className} margin="normal">
             <InputLabel shrink className={classes.label}>
                 <FieldTitle
                     label={label}
@@ -69,9 +70,11 @@ export const Labeled = ({
                 />
             </InputLabel>
             <div className={classes.value}>
-                {children && typeof children.type !== 'string'
-                    ? React.cloneElement(children, { input, resource, ...rest })
-                    : children}
+                {children && typeof children.type !== 'string' ? (
+                    React.cloneElement(children, { input, resource, ...rest })
+                ) : (
+                    children
+                )}
             </div>
         </FormControl>
     );
@@ -80,6 +83,8 @@ export const Labeled = ({
 Labeled.propTypes = {
     basePath: PropTypes.string,
     children: PropTypes.element,
+    classes: PropTypes.object,
+    className: PropTypes.string,
     input: PropTypes.object,
     isRequired: PropTypes.bool,
     label: PropTypes.string,
