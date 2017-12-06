@@ -70,11 +70,9 @@ export const Labeled = ({
                 />
             </InputLabel>
             <div className={classes.value}>
-                {children && typeof children.type !== 'string' ? (
-                    React.cloneElement(children, { input, resource, ...rest })
-                ) : (
-                    children
-                )}
+                {children && typeof children.type !== 'string'
+                    ? React.cloneElement(children, { input, resource, ...rest })
+                    : children}
             </div>
         </FormControl>
     );

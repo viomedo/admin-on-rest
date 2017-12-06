@@ -114,22 +114,18 @@ export class CheckboxGroupInput extends Component {
             <FormControlLabel
                 key={get(choice, optionValue)}
                 checked={
-                    value ? (
-                        value.find(v => v == get(choice, optionValue)) !==
-                        undefined
-                    ) : (
-                        false
-                    )
+                    value
+                        ? value.find(v => v == get(choice, optionValue)) !==
+                          undefined
+                        : false
                 }
                 onChange={this.handleCheck}
                 value={String(get(choice, optionValue))}
                 control={<Checkbox {...options} />}
                 label={
-                    translateChoice ? (
-                        translate(choiceName, { _: choiceName })
-                    ) : (
-                        choiceName
-                    )
+                    translateChoice
+                        ? translate(choiceName, { _: choiceName })
+                        : choiceName
                 }
             />
         );
